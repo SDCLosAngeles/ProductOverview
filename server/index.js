@@ -1,5 +1,5 @@
 const express = require('express');
-
+const queries = request('./queries.js');
 const port = 3100
 const app = express();
 
