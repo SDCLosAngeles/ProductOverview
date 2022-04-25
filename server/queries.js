@@ -34,7 +34,6 @@ const getProducts = (req, res) => {
     if (error) {
       throw error;
     }
-    console.log("done!")
     res.status(200).json(results.rows);
   })
 }
@@ -51,9 +50,13 @@ const getProductsById = (req, res) => {
   });
 }
 
+const formatStylesByProductId = function (arrayOfObjs) {
+  // format data from getStylesByProductId()
+}
+
 const getStylesByProductId = (req, res) => {
   const product_id = parseInt(req.params.product_id);
-  const query = 'SELECT p.id, s.style_id, s.name, s.original_price, sale_price, s default_style, photo.url, photo.thumbnail_url, sku.sku_id, sku.size, sku.quantity FROM product AS p INNER JOIN style AS s ON p.id = s.id INNER JOIN photo AS photo ON s.style_id = photo.photo_id INNER JOIN sku AS sku ON s.style_id = sku.sku_id WHERE p.id = $1;';
+  const query = 'SELECT p.id, s.style_id, s.name, s.original_price, sale_price, s default_style, photo.url, photo.thumbnail_url, sku.sku_id, sku.size, sku.quantity FROM product AS p FULL JOIN style AS s ON p.id = s.id FULL JOIN photo AS photo ON s.style_id = photo.photo_id FULL JOIN sku AS sku ON s.style_id = sku.sku_id WHERE p.id = $1;';
 
   pool.query(query, [product_id], (error, results) => {
     if (error) {

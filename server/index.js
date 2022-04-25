@@ -14,7 +14,7 @@ app.get('/products', db.getProducts);
 
 app.get('/products/:product_id', db.getProductsById);
 
-app.get('/products/:product_id/styles', db.getProductsById);
+app.get('/products/:product_id/styles', db.getStylesByProductId);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
