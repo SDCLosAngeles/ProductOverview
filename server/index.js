@@ -1,3 +1,4 @@
+// require('dotenv').config();
 const express = require('express');
 const db = require('./queries');
 
@@ -7,7 +8,7 @@ const app = express();
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send({ info: 'Node.js, Express, and Postgres API' });
+  res.send('Homepage');
 })
 
 app.get('/products', db.getProducts);
